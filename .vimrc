@@ -1,5 +1,5 @@
 set nocompatible
-set encoding=utf-8
+scriptencoding=utf-8
 
 "" Colors
 " http://vim.wikia.com/wiki/256_colors_in_vim
@@ -22,6 +22,9 @@ set history=200  " remember more Ex commands
 set scrolloff=3  " have some context around the current line always on screen
 set showmatch    " show matched braces
 set matchpairs+=<:>  " show matched html tags
+set wildmenu     " show wildmenu for menus
+set wildcharm=<TAB>  " ... with autocomplete
+set fileencodings=utf-8,windows-1251  " try to open file in valid encoding
 
 "" Whitespace
 set modeline        " read settings from edited files
@@ -64,10 +67,15 @@ set pastetoggle=<F12>  " toggle paste mode
 " remove DOS line endings (\r)
 nnoremap <silent><leader>r :call RepairFile()<CR>
 
-" toggle file read encoding (F8)
-nnoremap <F8> :call RotateEnc()<CR>
-inoremap <F8> <C-O><F8>
-vnoremap <F8> <C-C><F8>
+" read encoding menu
+nnoremap <F8> :emenu File.Encoding.Read.<TAB>
+inoremap <F8> <C-O>:emenu File.Encoding.Read.<TAB>
+vnoremap <F8> <ESC>:emenu File.Encoding.Read.<TAB>
+
+" write encoding menu
+nnoremap <S-F8> :emenu File.Encoding.Write.<TAB>
+inoremap <S-F8> <C-O>:emenu File.Encoding.Write.<TAB>
+vnoremap <S-F8> <ESC>:emenu File.Encoding.Write.<TAB>
 
 
 "" Cyrillic keyboard fix
@@ -100,6 +108,29 @@ if has("autocmd")
 endif
 
 
+"" Menu
+if has("menu")
+
+    " EOL
+    anoremenu &File.&EOL.&unix :setlocal fileformat=unix fileformat?<CR>
+    anoremenu &File.&EOL.&dos :setlocal fileformat=dos fileformat?<CR>
+    anoremenu &File.&EOL.&mac :setlocal fileformat=mac fileformat?<CR>
+
+    " Write encoding
+    anoremenu &File.E&ncoding.&Write.&utf-8 :setlocal fileencoding=utf-8 fileencoding?<CR>
+    anoremenu &File.E&ncoding.&Write.&windows-1251 :setlocal fileencoding=windows-1251 fileencoding?<CR>
+    anoremenu &File.E&ncoding.&Write.&iso-8859-15 :setlocal fileencoding=iso-8859-15 fileencoding?<CR>
+    anoremenu &File.E&ncoding.&Write.&koi8-r :setlocal fileencoding=koi8-r fileencoding?<CR>
+
+    " Read encoding
+    anoremenu &File.E&ncoding.&Read.&utf-8 :edit ++enc=utf-8<CR>:setlocal fileencoding?<CR>
+    anoremenu &File.E&ncoding.&Read.&windows-1251 :edit ++enc=windows-1251<CR>:setlocal fileencoding?<CR>
+    anoremenu &File.E&ncoding.&Read.&iso-8859-15 :edit ++enc=iso-8859-15<CR>:setlocal fileencoding?<CR>
+    anoremenu &File.E&ncoding.&Read.&koi8-r :edit ++enc=koi8-r<CR>:setlocal fileencoding?<CR>
+
+endif
+
+
 "" Functions
 if exists("*function")
 
@@ -121,25 +152,6 @@ if exists("*function")
             endif
             let &backupdir=l:backupdir
             let &backupext=strftime("~%Y-%m-%d~")
-    endfunction
-
-    " Encoding switcher
-    let b:encindex=0
-    function! RotateEnc()
-        let y = -1
-        while y == -1
-            let encstring = "#utf-8#8bit-cp1251#8bit-cp866#koi8-r#"
-            let x = match(encstring, "#", b:encindex)
-            let y = match(encstring, "#", x + 1)
-            let b:encindex = x + 1
-            if y == -1
-                let b:encindex = 0
-            else
-                let str = strpart(encstring, x + 1, y - x - 1)
-                echo "Encoding changed to " . str
-                return ":e ++enc=" . str
-            endif
-        endwhile
     endfunction
 
     " Remove DOS line endings
