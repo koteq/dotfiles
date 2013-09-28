@@ -11,10 +11,8 @@ let g:jellybeans_use_lowcolor_black = 0
 colorscheme jellybeans  " https://github.com/nanotech/jellybeans.vim
 highlight Comment ctermfg=darkgrey
 
-
 "" General
 set nonumber     " line numbers aren't needed
-set ruler        " show the cursor position all the time
 set showcmd      " show partial commands below the status line
 set shell=bash   " avoids munging PATH under zsh
 let g:is_bash=1  " default shell syntax
@@ -64,24 +62,68 @@ language POSIX             " use english for all messages
 "" Binds (by default <leader> = \)
 set pastetoggle=<F12>  " toggle paste mode
 
-" remove DOS line endings (\r)
+" Remove DOS line endings (\r)
 nnoremap <silent><leader>r :call RepairFile()<CR>
 
-" read encoding menu
+" Read encoding menu
 nnoremap <F8> :emenu File.Encoding.Read.<TAB>
 inoremap <F8> <C-O>:emenu File.Encoding.Read.<TAB>
 vnoremap <F8> <ESC>:emenu File.Encoding.Read.<TAB>
 
-" write encoding menu
+" Write encoding menu
 nnoremap <S-F8> :emenu File.Encoding.Write.<TAB>
 inoremap <S-F8> <C-O>:emenu File.Encoding.Write.<TAB>
 vnoremap <S-F8> <ESC>:emenu File.Encoding.Write.<TAB>
 
+"" Status line
+set noruler
+set laststatus=2
+hi StatusLine ctermbg=0 ctermfg=7
+
+if exists("*function")
+    " Add the variable with the name a:varName to the statusline. Highlight it as
+    " 'error' unless its value is in a:goodValues (a comma separated string)
+    function! AddStatuslineFlag(varName, goodValues)
+        set statusline+=[
+        set statusline+=%#error#
+        exec "set statusline+=%{RenderStlFlag(".a:varName.",'".a:goodValues."',1)}"
+        set statusline+=%*
+        exec "set statusline+=%{RenderStlFlag(".a:varName.",'".a:goodValues."',0)}"
+        set statusline+=]
+    endfunction
+
+    function! RenderStlFlag(value, goodValues, error)
+        let goodValues = split(a:goodValues, ',')
+        let good = index(goodValues, a:value) != -1
+        if (a:error && !good) || (!a:error && good)
+            return a:value
+        else
+            return ''
+        endif
+    endfunction
+endif
+
+set statusline=%t\      " tail of the filename
+set statusline+=%m      " modified flag
+if exists("*function")
+    call AddStatuslineFlag('&ff', 'unix')    " fileformat
+    call AddStatuslineFlag('&fenc', 'utf-8') " file encoding
+else
+    set statusline+=[%{&ff}]                        " fileformat
+    set statusline+=[%{strlen(&fenc)?&fenc:'none'}] " file encoding
+endif
+set statusline+=%y      " filetype
+set statusline+=%r      " read only flag
+set statusline+=%=      " left/right separator
+set statusline+=&#%B;\  " char code
+set statusline+=%c,     " cursor column
+set statusline+=%l/%L   " cursor line/total lines
+set statusline+=\ %P    " percent through file
 
 "" Cyrillic keyboard fix
 set langmap=йq,цw,уe,кr,еt,нy,гu,шi,щo,зp,х[,ъ],фa,ыs,вd,аf,пg,рh,оj,лk,дl,ж\\;,э',яz,чx,сc,мv,иb,тn,ьm,б\\,,ю.,ё`,ЙQ,ЦW,УE,КR,ЕT,НY,ГU,ШI,ЩO,ЗP,Х{,Ъ},ФA,ЫS,ВD,АF,ПG,РH,ОJ,ЛK,ДL,Ж:,Э\\",ЯZ,ЧX,СC,МV,ИB,ТN,ЬM,Б<,Ю>,Ё~
 
-
+" Autocmd settings
 if has("autocmd")
 
     " Enable file type detection.
@@ -107,7 +149,6 @@ if has("autocmd")
 
 endif
 
-
 "" Menu
 if has("menu")
 
@@ -129,7 +170,6 @@ if has("menu")
     anoremenu &File.E&ncoding.&Read.&koi8-r :edit ++enc=koi8-r<CR>:setlocal fileencoding?<CR>
 
 endif
-
 
 "" Functions
 if exists("*function")
