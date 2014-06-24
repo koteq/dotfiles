@@ -30,7 +30,7 @@ source $ZSH/oh-my-zsh.sh
 
 # aliases
 alias l=ls++
-alias ls="ls --color=auto -A"
+alias ls="ls --color=auto -A --group-directories-first"
 alias ll="ls -lFh"
 alias v=vim
 alias sv="sudo vim"
