@@ -30,11 +30,13 @@ source $ZSH/oh-my-zsh.sh
 
 # aliases
 alias l=ls++
-alias ls="ls -A"
-alias ll="ls -lAh"
-alias df="df -h"
+alias ls="ls --color=auto -A"
+alias ll="ls -lFh"
 alias v=vim
 alias sv="sudo vim"
+alias grep="grep --color=auto"
+alias fgrep="fgrep --color=auto"
+alias egrep="egrep --color=auto"
 alias g=grep
 
 export EDITOR="vim"
