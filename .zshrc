@@ -21,7 +21,7 @@ ZSH_THEME="gentoo"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-plugins=(archlinux extract history-substring-search)
+plugins=(common-aliases sudo extract history-substring-search)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -29,10 +29,11 @@ source $ZSH/oh-my-zsh.sh
 # Final customization
 
 # aliases
-alias l=ls++
+alias l=ls
 alias ls="ls --color=auto -A --group-directories-first"
 alias ll="ls -lFh"
 alias v=vim
+alias vi=vim
 alias sv="sudo vim"
 alias grep="grep --color=auto"
 alias fgrep="fgrep --color=auto"
