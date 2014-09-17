@@ -43,9 +43,11 @@ alias g=grep
 export EDITOR="vim"
 export PATH=$PATH:~/bin
 
-# set russian locale, but keep messages in english
-export LANG="ru_RU.UTF-8"
-export LC_MESSAGES="en_US.UTF-8"
+# keep everything in english, except time, numbers and currency
+export LANG="en_US.UTF-8"
+export LC_TIME="ru_RU.UTF-8"
+export LC_NUMERIC="ru_RU.UTF-8"
+export LC_MONETARY="ru_RU.UTF-8"
 
 # search result displayed at 20% offset from top
 export LESS="-j.2"
