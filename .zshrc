@@ -40,8 +40,9 @@ alias fgrep="fgrep --color=auto"
 alias egrep="egrep --color=auto"
 alias g=grep
 
-export EDITOR="vim"
+export EDITOR=vim
 export PATH=$PATH:~/bin
+export HISTCONTROL=ignoreboth
 
 # keep everything in english, except time, numbers and currency
 export LANG="en_US.UTF-8"
