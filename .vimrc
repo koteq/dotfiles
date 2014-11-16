@@ -59,11 +59,31 @@ set confirm                " show dialogs insterad of error messages
 set shortmess=fimnrxoOtTI  " use short dialogs
 language POSIX             " use english for all messages
 
-"" Binds (by default <leader> = \)
-set pastetoggle=<F12>  " toggle paste mode
+"" Auto toggle paste mode
+if exists("*function")
+    let &t_SI .= "\<Esc>[?2004h"
+    let &t_EI .= "\<Esc>[?2004l"
+
+    inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
+
+    function! XTermPasteBegin()
+      set pastetoggle=<Esc>[201~
+      set paste
+      return ""
+    endfunction
+endif
 
 " Remove DOS line endings (\r)
-nnoremap <silent><leader>r :call RepairFile()<CR>
+if exists("*function")
+    nnoremap <silent><leader>r :call RepairFile()<CR>
+
+    function! RepairFile()
+        normal! mzHmy
+        execute "%s/<C-V><C-M>$//ge"
+        normal! 'yzt`z
+        echo "DOS characters removed"
+    endfunction
+endif
 
 " Read encoding menu
 nnoremap <F8> :emenu File.Encoding.Read.<TAB>
@@ -193,13 +213,5 @@ if exists("*function")
             let &backupdir=l:backupdir
             let &backupext=strftime("~%Y-%m-%d~")
     endfunction
-
-    " Remove DOS line endings
-    function! RepairFile()
-        normal! mzHmy
-        execute "%s/<C-V><C-M>$//ge"
-        normal! 'yzt`z
-        echo "DOS characters removed"
-    endfunction
-
+    
 endif
