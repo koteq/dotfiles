@@ -1,6 +1,13 @@
 set nocompatible
 scriptencoding=utf-8
 
+"" Binds
+" F8 - file read encoding menu
+" S-F8 - file write encoding menu
+"
+" <leader> - mapped to \
+" <leader>r - remove DOS \r line endings
+
 "" Colors
 " http://vim.wikia.com/wiki/256_colors_in_vim
 " configure terminal emulators to set $TERM properly
