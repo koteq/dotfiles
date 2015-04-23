@@ -8,7 +8,12 @@ wget --no-verbose --no-check-certificate https://raw.github.com/thekot/dotfiles/
 wget --no-verbose --no-check-certificate https://raw.github.com/thekot/dotfiles/master/.screenrc -O ~/.screenrc
 
 # ~/.vim directory structure
-mkdir -p ~/.vim/{swap,backup,colors,ftdetect,indent,syntax}
+mkdir -p ~/.vim/swap
+mkdir -p ~/.vim/backup
+mkdir -p ~/.vim/colors
+mkdir -p ~/.vim/ftdetect
+mkdir -p ~/.vim/indent
+mkdir -p ~/.vim/syntax
 
 # vim jellybeans colors theme
 wget --no-verbose --no-check-certificate https://raw.github.com/nanotech/jellybeans.vim/master/colors/jellybeans.vim -O ~/.vim/colors/jellybeans.vim
