@@ -60,3 +60,23 @@ unsetopt correctall
 if [ "$TERM" = "screen" ] ; then
     export TERM="screen-256color"
 fi
+
+# Function for quick navigation between similar dirs
+# Consider your current working dir is /a/b/c/foo/x/y/z
+# you execute `cdr bar` and it becomes /a/b/c/bar/x/y/z
+function cdr () {
+    replacement=$1
+    array=(${=PWD//\// })
+    # notice: arrays in zsh are 1 based
+    for ((i = ${#array[@]}; i > 0; i--)); do
+        directory=${PWD/${array[$i]}/$replacement}
+        if [ -d $directory ]; then
+            # show whats changed, and cd to new location
+            echo $PWD
+            echo $directory
+            cd $directory
+            return
+        fi
+    done
+    echo "Valid path not found"
+}
