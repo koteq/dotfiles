@@ -29,16 +29,16 @@ source $ZSH/oh-my-zsh.sh
 # Final customization
 
 # aliases
-alias l=ls
-alias ls="ls --color=auto -A --group-directories-first"
-alias ll="ls -lFh"
+alias l="ls --color=auto --almost-all --classify --group-directories-first -v"
+alias ls="ls --color=auto --almost-all --classify --group-directories-first -v"
+alias ll="ls --color=auto --almost-all --classify --group-directories-first -lvh"
 alias v=vim
 alias vi=vim
 alias sv="sudo vim"
+alias g="grep --color=auto"
 alias grep="grep --color=auto"
 alias fgrep="fgrep --color=auto"
 alias egrep="egrep --color=auto"
-alias g=grep
 
 export EDITOR=vim
 export PATH=$PATH:~/bin
