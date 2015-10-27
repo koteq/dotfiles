@@ -3,7 +3,7 @@ Dotfiles
 
 Install all useful crap
 ```
-zsh vim git screen ncurses-term
+zsh vim git tree screen ncurses-term
 ```
 
 Install oh-my-zsh
