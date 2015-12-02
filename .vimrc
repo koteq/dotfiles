@@ -15,7 +15,7 @@ scriptencoding=utf-8
 syntax enable
 set background=dark
 let g:jellybeans_use_lowcolor_black = 0
-colorscheme jellybeans  " https://github.com/nanotech/jellybeans.vim
+silent! colorscheme jellybeans  " https://github.com/nanotech/jellybeans.vim
 highlight Comment ctermfg=darkgrey
 
 "" General
@@ -64,7 +64,7 @@ endif
 "" Dialogs
 set confirm                " show dialogs insterad of error messages
 set shortmess=fimnrxoOtTI  " use short dialogs
-language POSIX             " use english for all messages
+language messages en       " use english for all messages
 
 "" Auto toggle paste mode
 if exists("*function")
@@ -78,6 +78,15 @@ if exists("*function")
       set paste
       return ""
     endfunction
+endif
+
+" Vim are able to run under ConEmu, but some tuning are needed
+" Use builds from https://tuxproject.de/projects/vim/
+" because they don't have issues with unicode
+if !empty($CONEMUBUILD)
+    set t_Co=256
+    set encoding=utf8
+    set termencoding=utf8
 endif
 
 " Remove DOS line endings (\r)
