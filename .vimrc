@@ -64,7 +64,7 @@ endif
 "" Dialogs
 set confirm                " show dialogs insterad of error messages
 set shortmess=fimnrxoOtTI  " use short dialogs
-language messages en       " use english for all messages
+language messages C        " use english for all messages
 
 "" Auto toggle paste mode
 if exists("*function")
