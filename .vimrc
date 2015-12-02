@@ -67,17 +67,19 @@ set shortmess=fimnrxoOtTI  " use short dialogs
 language messages C        " use english for all messages
 
 "" Auto toggle paste mode
-if exists("*function")
-    let &t_SI .= "\<Esc>[?2004h"
-    let &t_EI .= "\<Esc>[?2004l"
-
-    inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
-
-    function! XTermPasteBegin()
-      set pastetoggle=<Esc>[201~
-      set paste
-      return ""
-    endfunction
+if has("unix")
+    if exists("*function")
+        let &t_SI .= "\<Esc>[?2004h"
+        let &t_EI .= "\<Esc>[?2004l"
+    
+        inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
+    
+        function! XTermPasteBegin()
+        set pastetoggle=<Esc>[201~
+        set paste
+        return ""
+        endfunction
+    endif
 endif
 
 " Vim are able to run under ConEmu, but some tuning are needed
@@ -157,7 +159,7 @@ set statusline+=%l/%L   " cursor line/total lines
 set statusline+=\ %P    " percent through file
 
 "" Cyrillic keyboard fix
-set langmap=йq,цw,уe,кr,еt,нy,гu,шi,щo,зp,х[,ъ],фa,ыs,вd,аf,пg,рh,оj,лk,дl,ж\\;,э',яz,чx,сc,мv,иb,тn,ьm,б\\,,ю.,ё`,ЙQ,ЦW,УE,КR,ЕT,НY,ГU,ШI,ЩO,ЗP,Х{,Ъ},ФA,ЫS,ВD,АF,ПG,РH,ОJ,ЛK,ДL,Ж:,Э\\",ЯZ,ЧX,СC,МV,ИB,ТN,ЬM,Б<,Ю>,Ё~
+set langmap=йцукенгшщзхъ;qwertyuiop[],фывапролджэ;asdfghjkl\\;',ячсмитьбюё;zxcvbnm\\,.`,ЙЦУКЕНГШЩЗХЪ;QWERTYUIOP{},ФЫВАПРОЛДЖЭ;ASDFGHJKL:\\",ЯЧСМИТЬБЮЁ;ZXCVBNM<>~
 
 " Autocmd settings
 if has("autocmd")
