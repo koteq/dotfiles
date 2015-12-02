@@ -1,0 +1,54 @@
+[user]
+	#name = 
+	#email = 
+	
+[alias]
+	tags = tag -l
+	branches = branch -a
+	remotes = remote -v
+  # mnemonics are 'short log' and 'long log'
+  slg = log --date-order --abbrev-commit --date=relative --graph --pretty=format:'%C(auto)%s%Creset%C(auto)%d%Creset'
+  llg = log --date-order --abbrev-commit --date=relative --graph --pretty=format:'%C(yellow)%h%Creset %s%Creset%C(auto)%d%Creset %Cgreen%an %C(magenta bold)%cr%Creset'
+  lg = !git slg
+
+[help]
+	autoCorrect = -1
+[push]
+	default = simple
+[pull]
+	rebase = true
+[merge]
+	conflictstyle = diff3
+[branch]
+  # Note: pull.rebase = true is enough but some IDE utilize branch settings
+	autoSetupRebase = always
+
+[diff]
+  # Note: Git versions older than 2.2.0 use "bc3" as the keyword for BC4
+	tool = bc3
+[difftool]
+	prompt = false
+[difftool "bc3"]
+	path = c:/Program Files (x86)/Total Commander/utils/Beyond Compare 4/bcomp.exe
+
+[merge]
+	tool = bc3
+[mergetool]
+	prompt = false
+[mergetool "bc3"]
+	path = c:/Program Files (x86)/Total Commander/utils/Beyond Compare 4/bcomp.exe
+
+[color "branch"]
+	current = yellow reverse
+	local = yellow bold
+	remote = green bold
+	upstream = cyan bold
+[color "diff"]
+	meta = yellow bold
+	frag = magenta bold
+	old = red bold
+	new = green bold
+[color "status"]
+	added = green bold
+	changed = red bold
+	untracked = red bold
