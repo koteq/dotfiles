@@ -8,8 +8,8 @@
 	remotes = remote -v
 	# mnemonics are 'log', 'log short' and 'long log'
 	lgs = log --date-order --abbrev-commit --date=relative --graph --pretty=format:'%C(auto)%s%Creset%C(auto)%d%Creset'
-	lg = log --date-order --abbrev-commit --date=relative --graph --pretty=format:'%C(auto)%s%Creset%C(auto)%d%Creset %Cgreen%an'
-	lgl = log --date-order --abbrev-commit --date=relative --graph --pretty=format:'%C(yellow)%h%Creset %s%Creset%C(auto)%d%Creset %Cgreen%an %C(magenta bold)%cr%Creset'
+	lg = log --date-order --abbrev-commit --date=relative --graph --pretty=format:'%C(auto)%s%Creset%C(auto)%d%Creset %Cgreen%aN%Creset'
+	lgl = log --date-order --abbrev-commit --date=relative --graph --pretty=format:'%C(yellow)%h%Creset %s%Creset%C(auto)%d%Creset %Cgreen%aN%Creset %C(magenta bold)%cr%Creset'
 
 [help]
 	autoCorrect = -1
