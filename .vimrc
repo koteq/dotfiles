@@ -1,12 +1,14 @@
 set nocompatible
 scriptencoding=utf-8
 
-"" Binds
-" F8 - file read encoding menu
-" S-F8 - file write encoding menu
-"
-" <leader> - mapped to \
-" <leader>r - remove DOS \r line endings
+nnoremap  <F1> :Cheat<return>
+inoremap <F1> <C-O>:Cheat<return>
+vnoremap <F1> <ESC>:Cheat<return>
+command Cheat
+    \ :echo "[CheatSheet]"
+    \ |echo "F8 - file read encoding menu"
+    \ |echo "S-F8 - file write encoding menu"
+    \ |echo "\\r - remove DOS line endings"
 
 "" Colors
 " http://vim.wikia.com/wiki/256_colors_in_vim
