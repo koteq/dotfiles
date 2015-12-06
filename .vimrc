@@ -1,7 +1,7 @@
 set nocompatible
 scriptencoding=utf-8
 
-nnoremap  <F1> :Cheat<return>
+nnoremap <F1> :Cheat<return>
 inoremap <F1> <C-O>:Cheat<return>
 vnoremap <F1> <ESC>:Cheat<return>
 command Cheat
