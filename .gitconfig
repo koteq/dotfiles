@@ -41,14 +41,10 @@
 [color "branch"]
 	current = yellow reverse
 	local = yellow bold
-	remote = green bold
-	upstream = cyan bold
+	remote = green
+	upstream = cyan
 [color "diff"]
-	meta = yellow bold
-	frag = magenta bold
-	old = red bold
-	new = green bold
-[color "status"]
-	added = green bold
-	changed = red bold
-	untracked = red bold
+	meta = yellow
+	frag = magenta
+	old = red
+	new = green
