@@ -13,7 +13,7 @@ wget --no-check-certificate https://github.com/robbyrussell/oh-my-zsh/raw/master
 
 Grab dotfiles
 ```
-wget --no-check-certificate https://raw.github.com/thekot/dotfiles/master/install.sh -O - | sh
+wget --no-check-certificate https://raw.github.com/koteq/dotfiles/master/install.sh -O - | sh
 ```
 
 Configure your terminal to use 256 colors
