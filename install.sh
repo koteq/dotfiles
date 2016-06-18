@@ -1,11 +1,11 @@
 [ -f ~/.zshrc ] && cp --backup=numbered ~/.zshrc ~/.zshrc.original
-wget --no-verbose --no-check-certificate https://raw.github.com/thekot/dotfiles/master/.zshrc -O ~/.zshrc
+wget --no-verbose --no-check-certificate https://raw.github.com/koteq/dotfiles/master/.zshrc -O ~/.zshrc
 
 [ -f ~/.vimrc ] && cp --backup=numbered ~/.vimrc ~/.vimrc.original
-wget --no-verbose --no-check-certificate https://raw.github.com/thekot/dotfiles/master/.vimrc -O ~/.vimrc
+wget --no-verbose --no-check-certificate https://raw.github.com/koteq/dotfiles/master/.vimrc -O ~/.vimrc
 
 [ -f ~/.screenrc ] && cp --backup=numbered ~/.screenrc ~/.screenrc.original
-wget --no-verbose --no-check-certificate https://raw.github.com/thekot/dotfiles/master/.screenrc -O ~/.screenrc
+wget --no-verbose --no-check-certificate https://raw.github.com/koteq/dotfiles/master/.screenrc -O ~/.screenrc
 
 # ~/.vim directory structure
 mkdir -p ~/.vim/swap
