@@ -98,10 +98,10 @@ if exists("*function")
     nnoremap <silent><leader>r :call RepairFile()<CR>
 
     function! RepairFile()
-        normal! mzHmy
-        execute "%s/<C-V><C-M>$//ge"
-        normal! 'yzt`z
-        echo "DOS characters removed"
+        normal! mzHmy  " remember cursor and scroll positions
+        execute "%s/\r$//ge"
+        normal! 'yzt`z  " restore cursor and scroll positions
+        echo "DOS line endings removed"
     endfunction
 endif
 
